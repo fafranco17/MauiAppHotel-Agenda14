@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppHotel.ContratacaoHospedagem"
+             Title="ContratacaoHospedagem"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#E1E1E1">
+
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="Center" Padding="20" Spacing="20">
+
+            <Label Text="Cálculo da Diária"
+                   FontFamily="Kalam"
+                   FontSize="50"
+                   HorizontalOptions="Center"
+                   TextColor="#C62828" />
+
+            <Frame Padding="20" CornerRadius="10" BackgroundColor="White" HasShadow="True">
+                <VerticalStackLayout Spacing="20">
+
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Grid.Column="0" Text="Adultos:" VerticalOptions="Center" TextColor="Black" FontSize="16" />
+                        <HorizontalStackLayout Grid.Column="1" Spacing="15" VerticalOptions="Center">
+                            <Label Text="{Binding Value}" BindingContext="{x:Reference stp_adultos}" TextColor="#C62828" VerticalOptions="Center" FontAttributes="Bold" FontSize="18"/>
+                            <Stepper x:Name="stp_adultos" Minimum="0" Maximum="10" Increment="1" BackgroundColor="#A9A9A9" />
+                        </HorizontalStackLayout>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Grid.Column="0" Text="Crianças:" VerticalOptions="Center" TextColor="Black" FontSize="16" />
+                        <HorizontalStackLayout Grid.Column="1" Spacing="15" VerticalOptions="Center">
+                            <Label Text="{Binding Value}" BindingContext="{x:Reference stp_criancas}" TextColor="#C62828" VerticalOptions="Center" FontAttributes="Bold" FontSize="18"/>
+                            <Stepper x:Name="stp_criancas" Minimum="0" Maximum="10" Increment="1" BackgroundColor="#A9A9A9" />
+                        </HorizontalStackLayout>
+                    </Grid>
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Escolha sua Suíte" TextColor="#C62828" FontAttributes="Bold"/>
+                        <Label Text="Selecione sua Acomodação" FontSize="12" TextColor="Gray"/>
+
+                        <Frame Padding="5" CornerRadius="5" BackgroundColor="#F5F5F5" BorderColor="LightGray" HasShadow="False">
+                            <Picker x:Name="pck_quarto" 
+                                    Title="Selecionar..." 
+                                    TextColor="Black" 
+                                    BackgroundColor="Transparent" 
+                                    ItemDisplayBinding="{Binding Descricao}" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <Frame Padding="15" CornerRadius="8" BorderColor="LightGray" HasShadow="False" BackgroundColor="White">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="Período da Estadia" TextColor="#C62828" FontAttributes="Bold"/>
+
+                            <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="15">
+                                <Label Grid.Row="0" Grid.Column="0" Text="Check-in:" VerticalOptions="Center" TextColor="Black" />
+                                <DatePicker Grid.Row="0" Grid.Column="1" x:Name="dtpck_checkin" Format="dd/MM/yyyy" TextColor="Black" BackgroundColor="#F5F5F5" />
+
+                                <Label Grid.Row="1" Grid.Column="0" Text="Check-out:" VerticalOptions="Center" TextColor="Black" />
+                                <DatePicker Grid.Row="1" Grid.Column="1" x:Name="dtpck_checkout" Format="dd/MM/yyyy" TextColor="Black" BackgroundColor="#F5F5F5"/>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <Button Text="Avançar" Margin="0,10,0,0" BackgroundColor="#C62828" TextColor="White" CornerRadius="8" HeightRequest="50" Clicked="BtnAvancar_Clicked" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Text="Sobre o App" 
+                    Clicked="BtnSobre_Clicked"
+                    BackgroundColor="Transparent" 
+                    TextColor="#C62828" 
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
